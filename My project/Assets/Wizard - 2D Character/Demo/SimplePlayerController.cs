@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
 
-namespace ClearSky
-{
+
     public class SimplePlayerController : MonoBehaviour
     {
         public float movePower = 10f;
         public float jumpPower = 15f; //Set Gravity Scale in Rigidbody2D Component to 5
 
-        private Rigidbody2D rb;
+    [SerializeField]
+    private Rigidbody2D rb;
         private Animator anim;
-        Vector3 movement;
+    [SerializeField]
+    Vector3 movement;
         private int direction = 1;
         bool isJumping = false;
         private bool alive = true;
 
 
-        // Start is called before the first frame update
+    //Start is called before the first frame update
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -27,21 +28,21 @@ namespace ClearSky
             Restart();
             if (alive)
             {
-                Hurt();
+                //Hurt();
                 Die();
                 Attack();
                 Jump();
-                Run();
+                //Run();
 
             }
         }
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            anim.SetBool("isJump", false);
-        }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    anim.SetBool("isJump", false);
+    //}
 
 
-        void Run()
+    void Run()
         {
             Vector3 moveVelocity = Vector3.zero;
             anim.SetBool("isRun", false);
@@ -69,7 +70,7 @@ namespace ClearSky
             }
             transform.position += moveVelocity * movePower * Time.deltaTime;
         }
-        void Jump()
+    void Jump()
         {
             if ((Input.GetButtonDown("Jump") || Input.GetAxisRaw("Vertical") > 0)
             && !anim.GetBool("isJump"))
@@ -87,26 +88,26 @@ namespace ClearSky
             Vector2 jumpVelocity = new Vector2(0, jumpPower);
             rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
 
-            isJumping = false;
+        isJumping = false;
         }
         void Attack()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 anim.SetTrigger("attack");
             }
         }
-        void Hurt()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                anim.SetTrigger("hurt");
-                if (direction == 1)
-                    rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
-                else
-                    rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
-            }
-        }
+        //void Hurt()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Alpha2))
+        //    {
+        //        anim.SetTrigger("hurt");
+        //        if (direction == 1)
+        //            rb.AddForce(new Vector2(-5f, 1f), ForceMode2D.Impulse);
+        //        else
+        //            rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
+        //    }
+        //}
         void Die()
         {
             if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -124,4 +125,3 @@ namespace ClearSky
             }
         }
     }
-}

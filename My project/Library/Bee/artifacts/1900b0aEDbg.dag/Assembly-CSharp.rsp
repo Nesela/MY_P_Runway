@@ -341,7 +341,8 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/VSSettingsProvider.ref.dll"
-"Assets/Script/PlayerController.cs"
+"Assets/PlayerController.cs"
+"Assets/Script/Player.cs"
 "Assets/Wizard - 2D Character/Demo/SimplePlayerController.cs"
 "Assets/Wizard - 2D Character/Demo/WizDemo1.cs"
 -langversion:8.0
